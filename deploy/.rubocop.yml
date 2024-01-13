@@ -1,0 +1,17 @@
+---
+AllCops:
+  NewCops: enable
+  TargetRubyVersion: 3.0
+
+Layout/ExtraSpacing:
+  ForceEqualSignAlignment: true
+
+Layout/HashAlignment:
+  EnforcedColonStyle: table
+  EnforcedHashRocketStyle: table
+
+Style/CommandLiteral:
+  EnforcedStyle: mixed
+
+Style/Documentation:
+  Enabled: false

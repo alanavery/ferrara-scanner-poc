@@ -1,11 +1,17 @@
 {
   "name": "ferrara-candy-web",
   "private": true,
-  "version": "0.0.0",
+  "version": "1.0.0",
   "type": "module",
   "scripts": {
+    "clean": "rm -rf dist/",
     "dev": "vite",
     "build": "tsc && vite build",
+    "build-env": "sh -ac '. ./.env.${ENVIRONMENT}; npm run build'",
+    "build:local": "ENVIRONMENT=local npm run build-env",
+    "build:dev": "ENVIRONMENT=dev npm run build-env",
+    "build:stage": "ENVIRONMENT=stage npm run build-env",
+    "build:production": "ENVIRONMENT=production npm run build-env",
     "lint": "eslint . --ext ts,tsx --report-unused-disable-directives --max-warnings 0",
     "preview": "vite preview"
   },
