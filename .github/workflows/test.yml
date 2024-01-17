@@ -1,5 +1,6 @@
 ---
 name: Test
+permissions: {}
 
 on:
   workflow_dispatch:
@@ -11,6 +12,8 @@ jobs:
   build:
     name: Project build
     runs-on: ubuntu-latest
+    permissions:
+      contents: read
     steps:
       - uses: actions/checkout@v4
 

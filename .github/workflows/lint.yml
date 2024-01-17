@@ -1,5 +1,6 @@
 ---
 name: Lint
+permissions: {}
 
 on:
   workflow_dispatch:
@@ -39,7 +40,7 @@ jobs:
           fetch-depth: 0
 
       - name: MegaLinter
-        uses: oxsecurity/megalinter/flavors/cupcake@v7
+        uses: oxsecurity/megalinter/flavors/cupcake@7e042c726c68415475b05a65a686c612120a1232 # Links to MegaLinter v7.7.0
         id: ml
         env:
           VALIDATE_ALL_CODEBASE: true
@@ -71,7 +72,7 @@ jobs:
         run: sudo chown -Rc $UID .git/
 
       - name: Commit and push applied linter fixes
-        uses: stefanzweifel/git-auto-commit-action@v4
+        uses: stefanzweifel/git-auto-commit-action@8756aa072ef5b4a080af5dc8fef36c5d586e521d # Links to git-auto-commit v5
         if: >-
           steps.ml.outputs.has_updated_sources == 1 &&
           (
