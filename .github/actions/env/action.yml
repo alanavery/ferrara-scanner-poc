@@ -1,0 +1,19 @@
+---
+name: Set environment variables
+description: Set ENVIRONMENT and other variables
+
+runs:
+  using: "composite"
+  steps:
+    - name: Set configuration
+      shell: bash -leo pipefail {0}
+      run: echo 'set_env() { echo "$1" >> $GITHUB_ENV; }' >> ~/.bash_profile
+
+    - name: Determine current environment
+      shell: bash -leo pipefail {0}
+      run: |
+        env | grep GITHUB_
+
+        ENVIRONMENT="$(deploy/get_ci_environment.rb)"
+        set_env "ENVIRONMENT=${ENVIRONMENT}"
+        echo "Environment is set to: ${ENVIRONMENT}"

@@ -1,0 +1,23 @@
+---
+name: Build the project
+description: Install dependencies and package project
+
+inputs:
+  environment:
+    description: "Environment name"
+    required: true
+
+runs:
+  using: "composite"
+  steps:
+    - name: Show tooling information
+      shell: bash -leo pipefail {0}
+      run: |
+        set -x
+
+        ruby --version
+        aws --version
+
+    - name: Run build
+      shell: bash -leo pipefail {0}
+      run: deploy/build.rb -e ${{ inputs.environment }}

@@ -14,6 +14,7 @@ def parse_args(intro = nil)
   end.parse!
 
   validate_options(options)
+  define_environment_variables(options)
 
   options
 end
@@ -44,4 +45,9 @@ end
 
 def validate_options(options)
   raise OptionParser::MissingArgument unless options.length.positive?
+end
+
+def define_environment_variables(options)
+  ENV['ENVIRONMENT']  = options[:environment]
+  ENV['PUSH_RELEASE'] = options[:push_release]
 end

@@ -1,5 +1,9 @@
 # Ferrara Candy — Web
 
+[![Test](https://github.com/ampagency/ferrara-candy-web/actions/workflows/test.yml/badge.svg)](https://github.com/ampagency/ferrara-candy-web/actions/workflows/test.yml)
+[![Lint](https://github.com/ampagency/ferrara-candy-web/actions/workflows/lint.yml/badge.svg)](https://github.com/ampagency/ferrara-candy-web/actions/workflows/lint.yml)
+[![Deployment](https://github.com/ampagency/ferrara-candy-web/actions/workflows/deploy.yml/badge.svg)](https://github.com/ampagency/ferrara-candy-web/actions/workflows/deploy.yml)
+
 <!-- toc -->
 
 - [Expanding the ESLint configuration](#expanding-the-eslint-configuration)
