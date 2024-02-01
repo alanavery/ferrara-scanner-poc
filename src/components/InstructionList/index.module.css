@@ -1,0 +1,58 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.instruction {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+
+.instruction:not(:first-child) {
+  margin-top: 2rem;
+}
+
+.number {
+  font-size: 2.4rem;
+  line-height: 2.4rem;
+  font-weight: bold;
+  color: #f6d60f;
+  border: 0.32rem solid #f6d60f;
+  height: 3rem;
+  width: 3rem;
+  border-radius: 50%;
+  padding: 0;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  font-family: gothiks-condensed, Arial, sans-serif;
+}
+
+.instruction:nth-child(3n+1) > .number {
+  border-color: var(--color-dark-purple);
+  color: var(--color-dark-purple);
+}
+
+.instruction:nth-child(3n+2) > .number {
+  border-color: var(--color-blue);
+  color: var(--color-blue);
+}
+
+.instruction:nth-child(3n+3) > .number {
+  border-color: var(--color-pink);
+  color: var(--color-pink);
+}
+
+.number span {
+  margin-bottom: 0.32rem;
+}
+
+.text {
+  font-size: 1rem;
+  color:var(--color-purple);
+  text-align: center;
+  margin-top: 1rem;
+  max-width: 12rem;
+}

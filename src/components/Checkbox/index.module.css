@@ -1,0 +1,29 @@
+.container { 
+  display: flex;
+  flex-direction: column;
+  width: 100%;
+}
+
+.input, .input label {
+  color:var(--color-purple);
+  font-size: 0.8rem;
+  line-height: 0.8rem;
+  margin: 0;
+  text-align: start;
+  align-items: start;
+  display: flex;
+  width: 100%;
+  gap: 0.25rem;
+}
+
+.input label{
+  margin-top: 6px;
+}
+
+.input input{
+  margin-left: 0;
+}
+
+.center{
+  align-items: center;
+}

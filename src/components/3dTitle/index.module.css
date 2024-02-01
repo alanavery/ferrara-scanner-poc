@@ -1,0 +1,19 @@
+.container {
+  background:var(--color-pink);
+  color: white;
+  border: 0.4rem solid var(--color-dark-purple);
+  border-top-width: 0.2rem;
+  border-right-width: 0.2rem;
+  padding: 0.3rem 1.2rem;
+  min-width: 16rem;
+  border-radius: 0.8rem;
+  font-size: 2.5rem;
+  line-height: 2.25rem;
+  text-transform: uppercase;
+  margin: 0;
+  text-align: center;
+  font-weight: 700;
+  font-family: Gothiks, Arial, sans-serif;
+  transform: perspective(400px) rotateY(20deg) translateX(18px);
+  box-shadow: -0.1rem 0.25rem 0.3rem #AAA;
+}

@@ -1,0 +1,188 @@
+.container {
+  display: flex;
+  align-items: center;
+  perspective: 25rem;
+}
+
+.digits-container {
+  background: linear-gradient(45deg, #ddd, #bbb);
+  padding: 0.06rem;
+  border-radius: 1px;
+  transform-style: preserve-3d;
+}
+
+.digits-container > div {
+  background: linear-gradient(45deg, #bbb, #ddd);
+  padding: 0.06rem;
+  border-radius: 1px;
+  transform-style: preserve-3d;
+}
+
+.digits-container > div > div {
+  background: black;
+  display: flex;
+  gap: 0.08rem;
+  padding: 0.08rem;
+  border-radius: 1px;
+  transform-style: preserve-3d;
+}
+
+.digit{
+  transform-style: preserve-3d;
+  position: relative;
+  box-shadow: inset 1px solid #f44;
+}
+
+.digit::after, .digit::before{
+  content: '';
+  position: absolute;
+  top: 50%;
+  width: 0.2rem;
+  height: 0.4rem;
+  background: linear-gradient(45deg, #bbb, #444);
+  box-shadow: inset 0.04rem -0.03rem #777, inset -0.04rem 0.03rem #444;
+  transform: translateY(-50%);
+  z-index: 0;
+}
+
+.digit::after{
+ left:0; 
+}
+
+.digit::before{
+  right: 0;
+}
+
+.number-top-part, .number-bottom-part{
+  width: 2.4rem;
+  height: 2rem;
+  font-size: 3rem;
+  line-height: 3rem;
+  margin:0;
+  background: #444;
+  color: white;
+  position: relative;
+  overflow: hidden;
+  box-shadow: inset 0.05rem -0.04rem #555, inset -0.05rem 0.04rem #333;
+}
+
+.number-top-part > span, .number-bottom-part > span {
+  position:absolute;
+  left: 50%;
+  transform: translate(-50%, -38%);
+  font-family: "Arial MT", sans-serif;
+}
+
+.number-bottom-part > span {
+  position:absolute;
+  left: 50%;
+  top: 0%;
+  transform: translate(-50%, -40%);
+}
+
+.number-top-part > span {
+  top: 100%;
+}
+
+.number-top-part{
+  transform-origin: bottom;
+  border-bottom: inset 0.04rem black;
+  clip-path: polygon(0% 0%, 100% 0%, 100% calc(100% - 0.2rem), calc(100% - 0.2rem) calc(100% - 0.2rem), calc(100% - 0.2rem) 100%, calc(0% + 0.2rem) 100%, calc(0% + 0.2rem) calc(100% - 0.2rem), 0% calc(100% - 0.2rem) );
+}
+
+.number-bottom-part{
+  transform-origin: top;
+  border-top: inset 0.04rem black;
+  clip-path: polygon(100% 100%, 0% 100%, 0% calc(0% + 0.2rem), calc(0% + 0.2rem) calc(0% + 0.2rem), calc(0% + 0.2rem) 0%, calc(100% - 0.2rem) 0%, calc(100% - 0.2rem) calc(0% + 0.2rem), 100% calc(0% + 0.2rem) );
+
+}
+
+.old-number-top-part, .old-number-bottom-part{
+  position: absolute;
+}
+
+.old-number-bottom-part {
+  top: 50%;
+}
+
+@keyframes old-top-part-rotate-3d {
+  0% {
+    filter: brightness(100%);
+    z-index: 2;
+    visibility: visible;
+    transform: rotateX(0deg);
+  }
+
+  50% {
+    filter: brightness(150%);
+    z-index: 2;
+    visibility: hidden;
+    transform: rotateX(-90deg);
+  }
+
+  100% {
+    z-index: 2;
+    visibility: hidden;
+    transform: rotateX(-90deg);
+  }
+}
+
+
+@keyframes new-bottom-part-rotate-3d {
+  0% {
+    visibility: hidden;
+    z-index: 2;
+    transform: rotateX(90deg);
+  }
+
+  50% {
+    filter: brightness(35%);
+    visibility: hidden;
+    z-index: 2;
+    transform: rotateX(90deg);
+  }
+
+  100% {
+    filter: brightness(100%);
+    visibility: visible;
+    z-index: 2;
+    transform: rotateX(0deg);
+  }
+}
+
+.new-number-bottom-part{
+  animation-name: new-bottom-part-rotate-3d;
+}
+
+.old-number-top-part{
+  z-index: 2;
+  animation-name: old-top-part-rotate-3d;
+}
+
+.new-number-bottom-part, .old-number-top-part{
+  animation-duration: 250ms;
+  animation-timing-function: linear;
+  animation-fill-mode: forwards;
+}
+
+.separator{
+  color:black;
+  line-height: 3rem;
+  font-size: 3rem;
+  margin: 0 0.2rem;
+  margin-top: 0.25rem;
+}
+
+.labels {
+  line-height: 0.7rem;
+  font-size: 0.7rem;
+  display: flex;
+  gap: 4.5rem;
+  justify-content: center;
+  margin-top: 0.5rem;
+}
+
+.labels span{
+  width: 2rem;
+  text-align: center;
+}

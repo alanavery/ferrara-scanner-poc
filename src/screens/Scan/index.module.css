@@ -1,0 +1,97 @@
+.container {
+  width:  100%;
+  margin: auto;
+  min-height: 100dvh;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  background: #eee;
+  padding: 3rem;
+  position: relative;
+}
+
+.video{
+  position: absolute;
+  width: 100%;
+  height: 100%;
+  inset:0;
+  object-fit: cover;
+}
+
+.container > div {
+  z-index: 1;
+  max-width: 375px;
+}
+
+.container h1 {
+  color: white;
+  font-size: 2.18rem;
+  max-width: 12rem;
+}
+
+.focus-area { 
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  width: 16rem;
+  height: 16rem;
+  pointer-events: none;
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: 1fr 1fr;
+  place-items: center center;
+}
+
+
+.focus-area > span {
+  width: 3.5rem;
+  height: 3.5rem;
+
+  --border-width: 0.35rem;
+
+  border-style: solid;
+  border-color: white;
+}
+
+.focus-area > span:nth-child(1){
+  border-width: var(--border-width) 0 0 var(--border-width);
+  place-self: self-start self-start;
+}
+
+.focus-area > span:nth-child(2){
+  border-width: var(--border-width) var(--border-width) 0 0;
+  place-self: self-start self-end;
+}
+
+.focus-area > span:nth-child(3){
+  border-width: 0 0 var(--border-width) var(--border-width);
+  place-self: self-end self-start;
+}
+
+.focus-area > span:nth-child(4){
+  border-width: 0 var(--border-width) var(--border-width) 0;
+  place-self: self-end self-end;
+}
+
+.logos{
+  position: absolute;
+  bottom: 1rem;
+  left: 50%;
+  width: 100%;
+  max-width: 25rem;
+  transform: translateX(-50%);
+  padding: 0 1rem;
+}
+
+
+/* .container > *:nth-child(1){
+}
+.container > *:nth-child(2){
+  margin-top: 1rem;
+  text-align: start;
+  max-width: 18rem;
+}
+.container > *:nth-child(3){
+  margin-top: 2.8rem;
+} */

@@ -1,0 +1,10 @@
+.container {
+  color:var(--color-pink);
+  font-size: 2.5rem;
+  line-height: 2.25rem;
+  text-transform: uppercase;
+  margin: 0;
+  text-align: center;
+  font-weight: 700;
+  font-family: Gothiks, Arial, sans-serif;
+}

@@ -1,0 +1,7 @@
+.container {
+  color:var(--color-purple);
+  font-size: 0.875rem;
+  line-height: 1rem;
+  margin: 0;
+  text-align: center;
+}

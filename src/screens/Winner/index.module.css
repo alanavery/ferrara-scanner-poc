@@ -1,0 +1,36 @@
+.container {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  padding: 3rem 1rem;
+}
+
+.container > *:nth-child(2){
+  margin-top: 0.8rem;
+  max-width: 17rem;
+}
+
+.container > *:nth-child(2) > span{
+color:var(--color-pink);
+text-decoration: underline;
+}
+
+.container > *:nth-child(3){
+  margin-top: 1.5rem;
+}
+
+.form{
+  width: 100%;
+  margin-top: 1rem;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 1rem;
+  padding: 0 1rem;
+}
+
+.row{
+  width: 100%;
+  display: flex;
+  gap: 1rem;
+}
