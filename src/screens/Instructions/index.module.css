@@ -5,10 +5,10 @@
   padding: 3rem 1rem 4rem;
 }
 
-.container > *:nth-child(2){
+.container > *:nth-child(2) {
   margin-top: 2rem;
 }
 
-.container > *:nth-child(3){
+.container > *:nth-child(3) {
   margin-top: 2rem;
 }

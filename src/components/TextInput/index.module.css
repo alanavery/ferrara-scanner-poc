@@ -6,7 +6,7 @@
   width: 100%;
 }
 
-.center{
+.center {
   align-items: center;
 }
 
@@ -45,6 +45,7 @@
   width: 100%;
 }
 
-.container select:focus-visible, .container input:focus-visible  {
+.container select:focus-visible,
+.container input:focus-visible {
   outline: 1px solid var(--color-purple);
 }

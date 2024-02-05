@@ -4,7 +4,7 @@
 require_relative 'lib/config'
 
 def main
-  parse_args
+  ArgParser.parse
   Environment::Validation.check
 
   puts "Creating new tag: '#{Git::Release.tag_name}'…"

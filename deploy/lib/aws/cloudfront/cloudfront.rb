@@ -25,8 +25,8 @@ module Aws
     def invalidate_cache
       Aws.run(
         "cloudfront create-invalidation \
-           --distribution-id #{distribution} \
-           --paths '/*'"
+          --distribution-id #{distribution} \
+          --paths '/*'"
       )
     end
   end

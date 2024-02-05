@@ -6,17 +6,17 @@
   max-width: 19rem;
 }
 
-.content{ 
+.content {
   background: var(--color-blue);
   border-radius: 0.6rem;
   padding: 1.8rem 1.5rem;
 }
 
-.content-with-cta { 
+.content-with-cta {
   padding: 1.4rem 1rem 2.2rem;
 }
 
-.icon{
+.icon {
   position: absolute;
   top: 0;
   left: 50%;
@@ -30,25 +30,26 @@
   justify-content: center;
 }
 
-.icon img{
+.icon img {
   margin-bottom: 0.1rem;
   width: 1.3rem;
 }
 
-.title, .description {
+.title,
+.description {
   color: var(--color-dark-purple);
   text-align: center;
   font-weight: bold;
 }
 
-.title{
+.title {
   font-size: 1.875rem;
   line-height: 1.875rem;
   text-transform: uppercase;
   font-family: Gothiks, Arial, sans-serif;
 }
 
-.content-with-cta .title{
+.content-with-cta .title {
   font-size: 2.75rem;
   line-height: 2.4rem;
 }
@@ -59,11 +60,10 @@
   margin-top: 0.2rem;
 }
 
-.cta{
+.cta {
   position: absolute;
   bottom: 0;
   left: 50%;
   transform: translate(-50%, 50%);
   background: var(--color-dark-purple);
 }
-

@@ -5,17 +5,16 @@
   padding: 0 1rem 5rem;
 }
 
-
-.container > *:nth-child(1){
+.container > *:nth-child(1) {
   transform: translateY(-50%);
 }
 
-.container > *:nth-child(2){
+.container > *:nth-child(2) {
   margin-top: 1rem;
   text-align: start;
   max-width: 18rem;
 }
 
-.container > *:nth-child(3){
+.container > *:nth-child(3) {
   margin-top: 2.8rem;
 }

@@ -6,7 +6,7 @@
   width: 100%;
 }
 
-.center{
+.center {
   align-items: center;
 }
 
@@ -29,7 +29,6 @@
   padding-top: 0.35rem;
   width: 100%;
 }
-
 
 .error span {
   color: red;

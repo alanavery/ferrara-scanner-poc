@@ -1,5 +1,5 @@
 .container {
-  background:var(--color-pink);
+  background: var(--color-pink);
   color: white;
   border: 0.4rem solid var(--color-dark-purple);
   border-top-width: 0.2rem;
@@ -15,5 +15,5 @@
   font-weight: 700;
   font-family: Gothiks, Arial, sans-serif;
   transform: perspective(400px) rotateY(20deg) translateX(18px);
-  box-shadow: -0.1rem 0.25rem 0.3rem #AAA;
+  box-shadow: -0.1rem 0.25rem 0.3rem #aaa;
 }

@@ -4,7 +4,7 @@
 require_relative 'lib/config'
 
 def main
-  parse_args
+  ArgParser.parse
   Environment::Validation.check
   Aws::Validation.check
 

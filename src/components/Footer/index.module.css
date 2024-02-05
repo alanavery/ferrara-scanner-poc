@@ -1,55 +1,61 @@
-.margin{
+.margin {
   margin-top: auto;
 }
 
-.footer{
-  background:#e53b96;
+.footer {
+  background: #e53b96;
   padding: 2rem 2.2rem;
-  display:flex;
+  display: flex;
   flex-direction: column;
   align-items: center;
   z-index: 2;
 }
 
-.description{
-  margin:0;
+.description {
+  margin: 0;
 }
 
-.caption, .description, .footer a, .free-method-entry-message {
-  color:white;
+.caption,
+.description,
+.footer a,
+.free-method-entry-message {
+  color: white;
   font-size: 0.625rem;
   line-height: 0.625rem;
   letter-spacing: 0;
   text-align: center;
 }
 
-.footer > a{
+.footer > a {
   margin-top: 0.2rem;
 }
 
-.footer > a:first-of-type{
+.footer > a:first-of-type {
   margin-top: 1.5rem;
 }
 
-.caption{
+.caption {
   font-weight: 800;
   margin-top: 1.5rem;
   margin-bottom: 0;
 }
 
-.images{
-  position:relative;
+.images {
+  position: relative;
   height: 18rem;
   margin-bottom: -3rem;
   z-index: -1;
 }
 
-.sign, .candy, .orange-worm, .blue-worm{
+.sign,
+.candy,
+.orange-worm,
+.blue-worm {
   position: absolute;
   bottom: 0;
 }
 
-.sign{
+.sign {
   left: 50%;
   height: 100%;
   z-index: 2;

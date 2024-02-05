@@ -4,7 +4,7 @@
 require_relative 'lib/config'
 
 def main
-  parse_args
+  ArgParser.parse
 
   puts 'Install Node.js modules…'
   Nodejs::Npm.install

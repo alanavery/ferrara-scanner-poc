@@ -5,12 +5,12 @@
   padding: 3rem 1rem 4rem;
 }
 
-.container > *:nth-child(2){
+.container > *:nth-child(2) {
   margin-top: 0.5rem;
   max-width: 18rem;
 }
 
-.form{
+.form {
   width: 100%;
   margin-top: 2.5rem;
   display: flex;

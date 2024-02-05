@@ -3,22 +3,22 @@
   flex-direction: column;
   align-items: center;
   padding: 4rem 1rem 6rem;
-  position:relative;
+  position: relative;
   height: 100%;
-  flex:1;
+  flex: 1;
   overflow: hidden;
 }
 
-.container > *:nth-child(2){
+.container > *:nth-child(2) {
   margin-top: 0.5rem;
   max-width: 16rem;
 }
 
-.container > *:nth-child(3){
+.container > *:nth-child(3) {
   margin-top: 2rem;
 }
 
-.candy-one{
+.candy-one {
   position: absolute;
   left: 0;
   width: 60%;
@@ -27,7 +27,7 @@
   bottom: -1rem;
 }
 
-.candy-two{
+.candy-two {
   position: absolute;
   right: 0;
   width: 60%;
@@ -36,14 +36,14 @@
   bottom: -1rem;
 }
 
-.orange-worm{
+.orange-worm {
   position: absolute;
   top: 2rem;
   right: -3rem;
   height: 9rem;
 }
 
-.blue-worm{
+.blue-worm {
   position: absolute;
   top: 4rem;
   left: -1.5rem;

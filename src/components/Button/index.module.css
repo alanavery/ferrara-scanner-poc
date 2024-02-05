@@ -3,7 +3,7 @@
   border-radius: 0.8rem;
   min-width: 10rem;
   width: max-content;
-  color:white;
+  color: white;
   padding: 0 1.2rem;
   padding-bottom: 0.56rem;
   padding-top: 0.9rem;
@@ -17,6 +17,7 @@
   transition-duration: 100ms;
 }
 
-.container:hover, .container:focus-visible {
+.container:hover,
+.container:focus-visible {
   border-color: var(--color-purple);
 }
