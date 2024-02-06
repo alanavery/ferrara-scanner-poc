@@ -27,22 +27,10 @@ export const HomeAMOE = () => {
         >
           Let's go
         </Button>
-        <img
-          src={candyOneImage}
-          className={styles["candy-one"]}
-        />
-        <img
-          src={candyTwoImage}
-          className={styles["candy-two"]}
-        />
-        <img
-          src={orangeWormImage}
-          className={styles["orange-worm"]}
-        />
-        <img
-          src={blueWormImage}
-          className={styles["blue-worm"]}
-        />
+        <img src={candyOneImage} className={styles["candy-one"]} alt="" />
+        <img src={candyTwoImage} className={styles["candy-two"]} alt="" />
+        <img src={orangeWormImage} className={styles["orange-worm"]} alt="" />
+        <img src={blueWormImage} className={styles["blue-worm"]} alt="" />
       </div>
     </Layout>
   );

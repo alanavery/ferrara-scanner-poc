@@ -11,10 +11,9 @@ import { zodResolver } from "@hookform/resolvers/zod";
 import { useRouteContext } from "../../hooks/useRouteContext";
 import { Layout } from "../../components/Layout";
 import { PossibleFlows } from "../../contexts/RouteContext/types";
-import { useAlertOnUnload } from "../../hooks/useAlertOnUnload";
 import { useAxios } from "../../axios";
 import { useFormDataContext } from "../../hooks/useFormDataContext";
-import { PrizeResponse } from "../../hooks/usePrizeResponse";
+import { PrizeResponse, usePrizeResponse } from "../../hooks/usePrizeResponse";
 
 const schema = z.object({
   email: z.string().email(),
@@ -33,14 +32,12 @@ export const EmailForm = () => {
     resolver: zodResolver(schema),
   });
 
-  useAlertOnUnload();
-
   const [{ loading }] = useAxios(
     {
       url: "/api/entry",
       method: "POST",
     },
-    { manual: true },
+    { manual: true }
   );
 
   const { flow, setPath } = useRouteContext();
@@ -48,27 +45,31 @@ export const EmailForm = () => {
 
   const [, submit] = useAxios<PrizeResponse>(
     {
-      url: "/image_recognition/award_prize",
+      url: "/amoe_prize_award",
       method: "POST",
       headers: {
         "Content-Type": "multipart/form-data",
       },
     },
-    { manual: true },
+    { manual: true }
   );
 
-  const onSubmit: SubmitHandler<SchemaType> = async (
-    data,
-  ) => {
+  const setPrizeResponse = usePrizeResponse();
+
+  const onSubmit: SubmitHandler<SchemaType> = async (data) => {
     const { email } = data;
     spreadFormData({ email });
     if (flow === PossibleFlows.MOBILE) {
       setPath("/instructions");
     } else {
-      const response = await submit({
-        data: { email, physical_address: 1 },
-      });
-      console.log(response);
+      try {
+        const response = await submit({
+          data: { email },
+        });
+        setPrizeResponse(response.data.response);
+      } catch (e) {
+        console.error(e);
+      }
     }
   };
 
@@ -81,13 +82,9 @@ export const EmailForm = () => {
       <div className={styles.container}>
         <Title>ready, set, go</Title>
         <Text>
-          Enter your email below to get started and enter
-          for a chance to WIN!
+          Enter your email below to get started and enter for a chance to WIN!
         </Text>
-        <form
-          className={styles.form}
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <TextInput
             center
             label="Email address"
@@ -102,13 +99,11 @@ export const EmailForm = () => {
             required
             error={errors.confirmation?.message}
           >
-            Yes, I consent to Ferrara Candy Company and its
-            affiliates using my Personal Information to
-            provide me with product and marketing
-            information by email, and other electronic
-            means, and I have read and agree to the Terms of
-            Use and Privacy Policy, which describe how the
-            information I provide may be used.
+            Yes, I consent to Ferrara Candy Company and its affiliates using my
+            Personal Information to provide me with product and marketing
+            information by email, and other electronic means, and I have read
+            and agree to the Terms of Use and Privacy Policy, which describe how
+            the information I provide may be used.
           </Checkbox>
           <Button disabled={loading} type="submit">
             submit

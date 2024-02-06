@@ -32,39 +32,29 @@ export const usePrizeResponse = () => {
   const setPrizeResponse = useCallback(
     (
       response: PossibleResponses,
-      {
-        successCallback,
-        failCallback,
-      }: {
+      options?: {
         successCallback?: () => void;
         failCallback?: () => void;
-      },
+      }
     ) => {
+      const { successCallback, failCallback } = options ?? {};
       if (response === PossibleResponses.WIN) {
         successCallback?.();
         setPath("/animation/win/st");
       } else if (response === PossibleResponses.LOSE) {
         successCallback?.();
         setPath("/animation/lose/st");
-      } else if (
-        response === PossibleResponses.TRY_AGAIN_TOMORROW
-      ) {
+      } else if (response === PossibleResponses.TRY_AGAIN_TOMORROW) {
         successCallback?.();
         setPath("/animation/already-awarded/st");
-      } else if (
-        response === PossibleResponses.EMAIL_NOT_FOUND
-      ) {
+      } else if (response === PossibleResponses.EMAIL_NOT_FOUND) {
         successCallback?.();
-        setPath(
-          flow === PossibleFlows.AMOE
-            ? "/amoe"
-            : "/email-form",
-        );
+        setPath(flow === PossibleFlows.AMOE ? "/amoe" : "/email-form");
       } else {
         failCallback?.();
       }
     },
-    [flow, setPath],
+    [flow, setPath]
   );
 
   return setPrizeResponse;

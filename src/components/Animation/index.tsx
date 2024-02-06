@@ -56,8 +56,7 @@ import laffyTaffybottom from "./laffy-taffy/bottom.webp";
 
 const candies = {
   st: {
-    packageBottomClassName:
-      styles["package-bottom-sweet-tarts"],
+    packageBottomClassName: styles["package-bottom-sweet-tarts"],
     packageTopClassName: styles["package-top-sweet-tarts"],
     bottomClassName: styles["bottom-sweet-tarts"],
     packageBottom: sweetTartbottomPartPackage,
@@ -99,17 +98,12 @@ const candies = {
     },
   },
   gb: {
-    packageBottomClassName:
-      styles["package-bottom-gummy-bear"],
+    packageBottomClassName: styles["package-bottom-gummy-bear"],
     packageTopClassName: styles["package-top-gummy-bear"],
     bottomClassName: styles["bottom-gummy-bear"],
     packageBottom: gummyBearbottomPartPackage,
     packageTop: gummyBeartopPartPackage,
-    candies: [
-      gummyBearCandy1,
-      gummyBearCandy2,
-      gummyBearCandy3,
-    ],
+    candies: [gummyBearCandy1, gummyBearCandy2, gummyBearCandy3],
     interrogationMark: gummyBearInterrogationMark,
     bottom: gummyBearbottom,
     candySizes: {
@@ -118,8 +112,7 @@ const candies = {
     },
   },
   lt: {
-    packageBottomClassName:
-      styles["package-bottom-laffy-taffy"],
+    packageBottomClassName: styles["package-bottom-laffy-taffy"],
     packageTopClassName: styles["package-top-laffy-taffy"],
     bottomClassName: styles["bottom-laffy-taffy"],
     packageBottom: laffyTaffybottomPartPackage,
@@ -143,9 +136,7 @@ const useDelayedFlag = (delay: number) => {
   return flag;
 };
 
-const RefConfetti = (
-  props: ComponentProps<typeof Confetti>,
-) => {
+const RefConfetti = (props: ComponentProps<typeof Confetti>) => {
   const { width, height } = useWindowSize();
   const confettiRef = useRef<HTMLCanvasElement>(null);
   return (
@@ -155,13 +146,7 @@ const RefConfetti = (
       width={width}
       height={height}
       friction={1.005}
-      colors={[
-        "#b0449b",
-        "#ef276f",
-        "#258a75",
-        "#ffc60b",
-        "#f57d2f",
-      ]}
+      colors={["#b0449b", "#ef276f", "#258a75", "#ffc60b", "#f57d2f"]}
       gravity={0.08}
       {...props}
     />
@@ -171,9 +156,7 @@ const RefConfetti = (
 const initialConfettiWidth = 100;
 const finalConfettiSize = 120;
 
-const useElementSize = (
-  ref: React.RefObject<HTMLDivElement>,
-) => {
+const useElementSize = (ref: React.RefObject<HTMLDivElement>) => {
   const [size, setSize] = useState({
     width: 0,
     height: 0,
@@ -198,10 +181,7 @@ export const Animation = ({
   state?: "win" | "lose" | "already-awarded";
 }) => {
   const drawCandy = useCallback(
-    function (
-      this: { index?: number },
-      ctx: CanvasRenderingContext2D,
-    ) {
+    function (this: { index?: number }, ctx: CanvasRenderingContext2D) {
       const candyObject = candies[candy ?? "st"];
       const candyImages = candyObject.candies;
       const index =
@@ -219,7 +199,7 @@ export const Animation = ({
       ctx.drawImage(base_image, 0, 0, width, height);
       ctx.closePath();
     },
-    [candy],
+    [candy]
   );
 
   const startPackageAnimation = useDelayedFlag(2000);
@@ -251,7 +231,7 @@ export const Animation = ({
         y: height * 0.5,
       },
     }),
-    [height, startPackageAnimation, state, width],
+    [height, startPackageAnimation, state, width]
   );
 
   const FINAL_CONFETTI_PROPS = useMemo(
@@ -266,19 +246,21 @@ export const Animation = ({
         y: height * 0.3 - finalConfettiSize / 2,
       },
     }),
-    [finalAnimation, height, state, width],
+    [finalAnimation, height, state, width]
   );
 
   return (
     <div className={styles.container} ref={ref}>
-      <img className={styles.star} src={star} />
+      <img className={styles.star} src={star} alt="" />
       <img
         className={styles["right-bottom-background"]}
         src={rightBottomBackground}
+        alt=""
       />
       <img
         className={styles["left-top-background"]}
         src={leftTopBackground}
+        alt=""
       />
       {state !== "win" && (
         <div
@@ -291,14 +273,17 @@ export const Animation = ({
       <img
         className={styles["interrogation-mark"]}
         src={candies[candy].interrogationMark}
+        alt=""
       />
       <img
         className={`${styles["bottom-part-package"]} ${candies[candy].packageBottomClassName}`}
         src={candies[candy].packageBottom}
+        alt=""
       />
       <img
         className={`${styles["top-part-package"]} ${candies[candy].packageTopClassName}`}
         src={candies[candy].packageTop}
+        alt=""
       />
       <div className={styles["initial-message"]}>
         <p>
@@ -309,10 +294,7 @@ export const Animation = ({
           <span>winner!</span>
         </p>
       </div>
-      <RefConfetti
-        drawShape={drawCandy}
-        {...INITIAL_CONFETTI_PROPS}
-      />
+      <RefConfetti drawShape={drawCandy} {...INITIAL_CONFETTI_PROPS} />
       <RefConfetti {...INITIAL_CONFETTI_PROPS} />
       <RefConfetti
         drawShape={drawCandy}
@@ -344,8 +326,7 @@ export const Animation = ({
           </p>
         </div>
       )}
-      {(state === "lose" ||
-        state === "already-awarded") && (
+      {(state === "lose" || state === "already-awarded") && (
         <div className={styles["lose-message"]}>
           <p>
             <span>SORRY!</span>

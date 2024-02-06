@@ -29,16 +29,19 @@ export const Header = ({
       <img
         className={styles["right-bottom-background"]}
         src={rightBottomBackground}
+        alt=""
       />
       <img
         className={styles["left-top-background"]}
         src={leftTopBackground}
+        alt=""
       />
       <img
         className={styles["center-image"]}
         src={getCenterImage(centerImage)}
+        alt=""
       />
-      <img className={styles.logos} src={logos} />
+      <img className={styles.logos} src={logos} alt="logo" />
     </header>
   );
 };

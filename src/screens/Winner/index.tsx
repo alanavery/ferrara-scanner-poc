@@ -211,10 +211,11 @@ export const Winner = () => {
             )}
           />
           <div style={{ width: "100%" }}>
-            <InputLabel label="Date of Birth" />
+            <InputLabel label="Date of Birth" required />
             <div className={styles.row}>
               <SelectInput
                 defaultValue=""
+                required
                 style={{ flex: 1 }}
                 {...register("month")}
                 options={[
@@ -239,6 +240,7 @@ export const Winner = () => {
               />
               <SelectInput
                 defaultValue=""
+                required
                 style={{ flex: 1 }}
                 {...register("day")}
                 options={[
@@ -258,6 +260,7 @@ export const Winner = () => {
               />
               <SelectInput
                 defaultValue=""
+                required
                 style={{ flex: 1 }}
                 {...register("year")}
                 options={[
@@ -287,7 +290,10 @@ export const Winner = () => {
             error={errors.confirmation?.message}
           >
             I have read and agree to the{" "}
-            <a>Official Rules</a>.
+            <a href="/privacy-policy" target="_blank">
+              Official Rules
+            </a>
+            .
           </Checkbox>
           <Button type="submit">submit</Button>
         </form>

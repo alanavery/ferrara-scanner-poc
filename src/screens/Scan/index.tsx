@@ -6,10 +6,7 @@ import logos from "../../assets/logos.png";
 import { useAlertOnUnload } from "../../hooks/useAlertOnUnload";
 import { useAxios } from "../../axios";
 import { useFormDataContext } from "../../hooks/useFormDataContext";
-import {
-  PrizeResponse,
-  usePrizeResponse,
-} from "../../hooks/usePrizeResponse";
+import { PrizeResponse, usePrizeResponse } from "../../hooks/usePrizeResponse";
 
 const resizeImage = (src: string, width = 500) => {
   return new Promise<string>((resolve) => {
@@ -21,10 +18,7 @@ const resizeImage = (src: string, width = 500) => {
       elem.height = img.height * scaleFactor;
       const ctx = elem.getContext("2d");
       ctx?.drawImage(img, 0, 0, elem.width, elem.height);
-      const data = ctx?.canvas.toDataURL(
-        "image/jpeg",
-        0.75,
-      );
+      const data = ctx?.canvas.toDataURL("image/jpeg", 0.75);
       resolve(data || "");
     };
     img.src = src;
@@ -43,6 +37,7 @@ export const Scan = () => {
   const initiated = useRef(false);
 
   useAlertOnUnload();
+
   const [, submit] = useAxios<PrizeResponse>(
     {
       url: "/image_recognition/award_prize",
@@ -51,7 +46,7 @@ export const Scan = () => {
         "Content-Type": "multipart/form-data",
       },
     },
-    { manual: true },
+    { manual: true }
   );
 
   const { formData } = useFormDataContext();
@@ -75,8 +70,7 @@ export const Scan = () => {
         const responseMessage = data?.response;
         setPrizeResponse(responseMessage, {
           successCallback: () => {
-            interval.current &&
-              clearTimeout(interval.current);
+            interval.current && clearTimeout(interval.current);
           },
         });
       } else {
@@ -115,6 +109,9 @@ export const Scan = () => {
         imageSmoothing={false}
         disablePictureInPicture
         className={styles.video}
+        videoConstraints={{
+          facingMode: "environment",
+        }}
       />
       <div>
         <Title>Center the pack on your screen</Title>
@@ -125,7 +122,7 @@ export const Scan = () => {
         <span />
         <span />
       </div>
-      <img className={styles.logos} src={logos} />
+      <img className={styles.logos} src={logos} alt="candy logo" />
     </div>
   );
 };

@@ -1,5 +1,10 @@
 import { createContext, useEffect, useState } from "react";
-import { ROUTES } from "../../routes";
+import {
+  AMOE_BEGINNING_PATHS,
+  BEGINNING_PATHS,
+  MOBILE_BEGINNING_PATHS,
+  ROUTES,
+} from "../../routes";
 import { PossibleFlows, PossiblePaths } from "./types";
 
 type RouteContextType = {
@@ -8,31 +13,31 @@ type RouteContextType = {
   setPath: (route: PossiblePaths) => void;
 };
 
-export const RouteContext = createContext<RouteContextType>(
-  {
-    path: "/amoe",
-    flow: PossibleFlows.AMOE,
-    setPath: () => {},
-  },
-);
+export const RouteContext = createContext<RouteContextType>({
+  path: "/amoe",
+  flow: PossibleFlows.AMOE,
+  setPath: () => {},
+});
 
 export const RouteProvider: React.FC = () => {
   const [path, setPath] = useState<PossiblePaths>("/amoe");
-  const [flow, setFlow] = useState<PossibleFlows>(
-    PossibleFlows.AMOE,
-  );
+  const [flow, setFlow] = useState<PossibleFlows>(PossibleFlows.AMOE);
 
   useEffect(() => {
     const initialPath = window.location.pathname;
-    if (["/", "/amoe"].includes(initialPath)) {
-      setFlow(PossibleFlows.AMOE);
-      setPath("/amoe");
-    } else {
-      setFlow(PossibleFlows.MOBILE);
-      setPath("/email-form");
-    }
-    if (import.meta.env.DEV) {
+    const isAmoe = AMOE_BEGINNING_PATHS.includes(
+      initialPath as keyof typeof ROUTES
+    );
+    const isBeginningPath =
+      import.meta.env.DEV ||
+      isAmoe ||
+      MOBILE_BEGINNING_PATHS.includes(initialPath as keyof typeof ROUTES) ||
+      BEGINNING_PATHS.includes(initialPath as keyof typeof ROUTES);
+    setFlow(isAmoe ? PossibleFlows.AMOE : PossibleFlows.MOBILE);
+    if (isBeginningPath) {
       setPath(initialPath as PossiblePaths);
+    } else {
+      setPath("/");
     }
   }, []);
 

@@ -13,7 +13,7 @@ export const Offer = ({
 }) => (
   <div className={styles.container}>
     <div className={styles.icon}>
-      <img className={styles.star} src={starIcon} />
+      <img className={styles.star} src={starIcon} alt="" />
     </div>
     <div
       className={`${styles.content} ${
@@ -21,12 +21,8 @@ export const Offer = ({
       }`}
     >
       <div className={styles.title}>{title}</div>
-      <div className={styles.description}>
-        {description}
-      </div>
+      <div className={styles.description}>{description}</div>
     </div>
-    {ctaLabel && (
-      <Button className={styles.cta}>{ctaLabel}</Button>
-    )}
+    {ctaLabel && <Button className={styles.cta}>{ctaLabel}</Button>}
   </div>
 );
