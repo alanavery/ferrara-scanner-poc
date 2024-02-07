@@ -1,6 +1,7 @@
 import { useCallback } from "react";
 import { useRouteContext } from "./useRouteContext";
 import { PossibleFlows } from "../contexts/RouteContext/types";
+import { CandyMap, PossibleCandies } from "../config/candies";
 
 export enum PossibleResponses {
   WIN = "Prize given",
@@ -10,16 +11,6 @@ export enum PossibleResponses {
   TRY_AGAIN_TOMORROW = "Try again tomorrow",
   EMAIL_NOT_FOUND = "Email not found",
 }
-
-export const CandyMap = {
-  "sweet-tarts": "st",
-  trolli: "tl",
-  nerds: "nd",
-  "gummy-bear": "gb",
-  "laffy-taffy": "lt",
-};
-
-export enum PossibleCandies {}
 
 export type PrizeResponse = {
   response: PossibleResponses;
@@ -31,22 +22,28 @@ export const usePrizeResponse = () => {
   const { setPath, flow } = useRouteContext();
   const setPrizeResponse = useCallback(
     (
-      response: PossibleResponses,
+      data: PrizeResponse,
       options?: {
         successCallback?: () => void;
         failCallback?: () => void;
       }
     ) => {
       const { successCallback, failCallback } = options ?? {};
+      const { response } = data;
+      const candyKeys = Object.keys(CandyMap);
+      const candy: PossibleCandies =
+        CandyMap[data.candy_name] ??
+        candyKeys[Math.floor(Math.random() * candyKeys.length)] ??
+        "st";
       if (response === PossibleResponses.WIN) {
         successCallback?.();
-        setPath("/animation/win/st");
+        setPath(`/animation/win/${candy}`);
       } else if (response === PossibleResponses.LOSE) {
         successCallback?.();
-        setPath("/animation/lose/st");
+        setPath(`/animation/lose/${candy}`);
       } else if (response === PossibleResponses.TRY_AGAIN_TOMORROW) {
         successCallback?.();
-        setPath("/animation/already-awarded/st");
+        setPath(`/animation/already-awarded/${candy}`);
       } else if (response === PossibleResponses.EMAIL_NOT_FOUND) {
         successCallback?.();
         setPath(flow === PossibleFlows.AMOE ? "/amoe" : "/email-form");

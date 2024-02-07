@@ -8,7 +8,7 @@ import { useAxios } from "../../axios";
 import { useFormDataContext } from "../../hooks/useFormDataContext";
 import { PrizeResponse, usePrizeResponse } from "../../hooks/usePrizeResponse";
 
-const resizeImage = (src: string, width = 500) => {
+const resizeImage = (src: string, width = 600) => {
   return new Promise<string>((resolve) => {
     const img = new Image();
     img.onload = () => {
@@ -67,8 +67,8 @@ export const Scan = () => {
         const { data } = await submit({
           data: form,
         });
-        const responseMessage = data?.response;
-        setPrizeResponse(responseMessage, {
+        const responseData = data;
+        setPrizeResponse(responseData, {
           successCallback: () => {
             interval.current && clearTimeout(interval.current);
           },
@@ -84,7 +84,7 @@ export const Scan = () => {
   const startInterval = useCallback(() => {
     async function intervalFunction() {
       await capture();
-      interval.current = setTimeout(intervalFunction, 150);
+      interval.current = setTimeout(intervalFunction, 250);
     }
 
     intervalFunction();
@@ -93,7 +93,7 @@ export const Scan = () => {
   useEffect(() => {
     if (!initiated.current) {
       initiated.current = true;
-      setTimeout(startInterval, 1000);
+      setTimeout(startInterval, 1500);
       return () => {
         interval.current && clearTimeout(interval.current);
       };

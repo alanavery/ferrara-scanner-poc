@@ -66,7 +66,7 @@ export const EmailForm = () => {
         const response = await submit({
           data: { email },
         });
-        setPrizeResponse(response.data.response);
+        setPrizeResponse(response.data);
       } catch (e) {
         console.error(e);
       }
