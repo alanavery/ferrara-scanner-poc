@@ -32,12 +32,12 @@ export const Footer = ({
           residents of the 50 U.S/DC who are 18+. Promotion begins 12:00:01 AM
           EDT on 3/15/24 and ends 11:59:59 PM EDT on 9/30/24. For entry
           instructions and{" "}
-          <a href="/privacy-policy" target="_blank">
+          <a href="/official-rules" target="_blank">
             Official Rules
           </a>
           , scan the QR code included on the Promotion signage with your
           web-enabled mobile device to be directed to{" "}
-          <a href="https://www.ferrarasummersweeps.com">
+          <a target="_blank" href="https://www.ferrarasummersweeps.com">
             www.FerraraSummerSweeps.com
           </a>
           . Total ARV of all prizes: $4,705.00. Odds depend on # of elig.
@@ -46,12 +46,18 @@ export const Footer = ({
           notification. Sponsored by: Ferrara Candy Company, 404 W. Harrison St.
           Suite 650, Chicago, IL 60607.
         </p>
-        <a>Contact Us</a>
-        <a href="/privacy-policy" target="_blank">
+        <a target="_blank" href="https://www.ferrarausa.com/contact-us">
+          Contact Us
+        </a>
+        <a target="_blank" href="https://www.ferrarausa.com/privacy-policy">
           Privacy Policy
         </a>
-        <a>Terms of Use</a>
-        <a>Do Not Sell My Personal Information</a>
+        <a target="_blank" href="https://www.ferrarausa.com/terms-of-use">
+          Terms of Use
+        </a>
+        <a target="_blank" href="https://www.ferrarausa.com/privacy-policy">
+          Do Not Sell My Personal Information
+        </a>
         <p className={styles.caption}>
           &copy; 2024 Ferrara Candy Company. All Rights Reserved.
         </p>

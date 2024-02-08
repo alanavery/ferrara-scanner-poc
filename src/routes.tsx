@@ -4,7 +4,7 @@ import { EmailForm } from "./screens/EmailForm";
 import { HomeAMOE } from "./screens/HomeAMOE";
 import { Instructions } from "./screens/Instructions";
 import { NotWinner } from "./screens/NotWinner";
-import { PrivacyPolicy } from "./screens/PrivacyPolicy";
+import { OfficialRules } from "./screens/OfficialRules";
 import { Scan } from "./screens/Scan";
 import { Winner } from "./screens/Winner";
 import { WinnerFormConfirmation } from "./screens/WinnerFormConfirmation";
@@ -72,8 +72,8 @@ export const ROUTES = {
   "/animation/already-awarded/lt": {
     component: <Animation candy="lt" state="already-awarded" />,
   },
-  "/privacy-policy": {
-    component: <PrivacyPolicy />,
+  "/official-rules": {
+    component: <OfficialRules />,
   },
 };
 
@@ -83,4 +83,4 @@ export const MOBILE_BEGINNING_PATHS: (keyof typeof ROUTES)[] = [
 ];
 
 export const AMOE_BEGINNING_PATHS: (keyof typeof ROUTES)[] = ["/amoe"];
-export const BEGINNING_PATHS: (keyof typeof ROUTES)[] = ["/privacy-policy"];
+export const BEGINNING_PATHS: (keyof typeof ROUTES)[] = ["/official-rules"];

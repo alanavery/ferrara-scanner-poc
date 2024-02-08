@@ -3,11 +3,7 @@ import { Text } from "../../components/Text";
 import { Title } from "../../components/Title";
 import styles from "./index.module.css";
 import { z } from "zod";
-import {
-  useForm,
-  SubmitHandler,
-  Controller,
-} from "react-hook-form";
+import { useForm, SubmitHandler, Controller } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import { TextInput } from "../../components/TextInput";
 import { Checkbox } from "../../components/Checkbox";
@@ -27,7 +23,7 @@ import { useTimeout } from "../../hooks/useTimeout";
 import { PossibleFlows } from "../../contexts/RouteContext/types";
 
 const phoneRegex = new RegExp(
-  /^\+1\s\(([2-9]{1}[0-9]{2})\)\s([2-9]{1}[0-9]{2})-([0-9]{4})$/,
+  /^\+1\s\(([2-9]{1}[0-9]{2})\)\s([2-9]{1}[0-9]{2})-([0-9]{4})$/
 );
 
 enum PossibleResponses {
@@ -46,9 +42,7 @@ const schema = z.object({
   address: z.string(),
   city: z.string(),
   state: z.string(),
-  phone_number: z
-    .string()
-    .regex(phoneRegex, "Invalid Number!"),
+  phone_number: z.string().regex(phoneRegex, "Invalid Number!"),
   confirmation: z.boolean().refine((val) => !!val, {
     message: "You must agree to the terms and conditions",
   }),
@@ -59,10 +53,7 @@ const schema = z.object({
 type SchemaType = z.infer<typeof schema>;
 
 const currentYear = new Date().getFullYear();
-const years = Array.from(
-  { length: 100 },
-  (_, i) => currentYear - i,
-);
+const years = Array.from({ length: 100 }, (_, i) => currentYear - i);
 
 export const Winner = () => {
   const {
@@ -88,7 +79,7 @@ export const Winner = () => {
         "Content-Type": "multipart/form-data",
       },
     },
-    { manual: true },
+    { manual: true }
   );
 
   useTimeout(() => {
@@ -99,16 +90,8 @@ export const Winner = () => {
 
   const onSubmit: SubmitHandler<SchemaType> = useCallback(
     async (formData) => {
-      const {
-        name,
-        address,
-        city,
-        state,
-        month,
-        day,
-        year,
-        phone_number,
-      } = formData;
+      const { name, address, city, state, month, day, year, phone_number } =
+        formData;
       const body = {
         email,
         name,
@@ -116,9 +99,7 @@ export const Winner = () => {
         city,
         state,
         phone_number: phone_number.replace(/\D/g, ""),
-        birthdate: new Date(
-          `${month} ${day}, ${year}`,
-        ).toISOString(),
+        birthdate: new Date(`${month} ${day}, ${year}`).toISOString(),
       };
 
       try {
@@ -131,7 +112,7 @@ export const Winner = () => {
         console.log(e);
       }
     },
-    [email, setPath, submit],
+    [email, setPath, submit]
   );
 
   return (
@@ -139,15 +120,11 @@ export const Winner = () => {
       <div className={styles.container}>
         <Title>You're today's winner</Title>
         <Text>
-          You have <span>ONE HOUR</span> to claim your
-          prize. Fill out the form below and you will
-          receive your prize in 4-6 weeks.
+          You have <span>ONE HOUR</span> to claim your prize. Fill out the form
+          below and you will receive your prize in 4-6 weeks.
         </Text>
         <Clock />
-        <form
-          className={styles.form}
-          onSubmit={handleSubmit(onSubmit)}
-        >
+        <form className={styles.form} onSubmit={handleSubmit(onSubmit)}>
           <TextInput
             label="Name"
             {...register("name")}
@@ -249,10 +226,7 @@ export const Winner = () => {
                     label: "Day",
                     disabled: true,
                   },
-                  ...Array.from(
-                    { length: 31 },
-                    (_, i) => i + 1,
-                  ).map((i) => ({
+                  ...Array.from({ length: 31 }, (_, i) => i + 1).map((i) => ({
                     value: i.toString(),
                     label: i.toString(),
                   })),
@@ -290,7 +264,7 @@ export const Winner = () => {
             error={errors.confirmation?.message}
           >
             I have read and agree to the{" "}
-            <a href="/privacy-policy" target="_blank">
+            <a href="/official-rules" target="_blank">
               Official Rules
             </a>
             .
