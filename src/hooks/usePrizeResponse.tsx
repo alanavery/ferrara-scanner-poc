@@ -29,12 +29,14 @@ export const usePrizeResponse = () => {
       }
     ) => {
       const { successCallback, failCallback } = options ?? {};
-      const { response } = data;
+      const { response, candy_name } = data;
       const candyKeys = Object.keys(CandyMap);
+      const randomIndex = Math.floor(
+        Math.floor(Math.random() * candyKeys.length)
+      );
+      const randomCandyKey = candyKeys[randomIndex] ?? "sweet-tarts";
       const candy: PossibleCandies =
-        CandyMap[data.candy_name] ??
-        candyKeys[Math.floor(Math.random() * candyKeys.length)] ??
-        "st";
+        CandyMap[candy_name ?? randomCandyKey] ?? "st";
       if (response === PossibleResponses.WIN) {
         successCallback?.();
         setPath(`/animation/win/${candy}`);
