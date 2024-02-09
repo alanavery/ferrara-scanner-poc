@@ -4,8 +4,7 @@
   width: 100%;
 }
 
-.input,
-.input label {
+.input {
   color: var(--color-purple);
   font-size: 0.8rem;
   line-height: 0.8rem;

@@ -79,8 +79,8 @@ const candies = {
     interrogationMark: trolliInterrogationMark,
     bottom: trollibottom,
     candySizes: {
-      width: 22,
-      height: 38,
+      width: 28,
+      height: 48.3,
     },
   },
   nd: {

@@ -102,8 +102,15 @@ export const EmailForm = () => {
             Yes, I consent to Ferrara Candy Company and its affiliates using my
             Personal Information to provide me with product and marketing
             information by email, and other electronic means, and I have read
-            and agree to the Terms of Use and Privacy Policy, which describe how
-            the information I provide may be used.
+            and agree to the{" "}
+            <a target="_blank" href="https://www.ferrarausa.com/terms-of-use">
+              Terms of Use
+            </a>{" "}
+            and{" "}
+            <a target="_blank" href="https://www.ferrarausa.com/privacy-policy">
+              Privacy Policy
+            </a>
+            , which describe how the information I provide may be used.
           </Checkbox>
           <Button disabled={loading} type="submit">
             submit

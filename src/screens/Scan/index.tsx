@@ -114,7 +114,7 @@ export const Scan = () => {
         }}
       />
       <div>
-        <Title>Center the pack on your screen</Title>
+        <Title>Center the logo on your screen</Title>
       </div>
       <div className={styles["focus-area"]}>
         <span />
