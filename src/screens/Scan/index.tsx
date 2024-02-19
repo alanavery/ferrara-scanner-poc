@@ -7,40 +7,21 @@ import { useAlertOnUnload } from "../../hooks/useAlertOnUnload";
 import { useAxios } from "../../axios";
 import { useFormDataContext } from "../../hooks/useFormDataContext";
 import { PrizeResponse, usePrizeResponse } from "../../hooks/usePrizeResponse";
-import * as tf from "@tensorflow/tfjs";
 import * as tmImage from "@teachablemachine/image";
 
-const resizeImage = (src: string, width = 600) => {
-  return new Promise<string>((resolve) => {
-    const img = new Image();
-    img.onload = () => {
-      const elem = document.createElement("canvas");
-      const scaleFactor = width / img.width;
-      elem.width = width;
-      elem.height = img.height * scaleFactor;
-      const ctx = elem.getContext("2d");
-      ctx?.drawImage(img, 0, 0, elem.width, elem.height);
-      const data = ctx?.canvas.toDataURL("image/jpeg", 0.75);
-      resolve(data || "");
-    };
-    img.src = src;
-  });
-};
-
-const srcToBlob = async (src: string) => {
-  const res = await fetch(src);
-  const blob = await res.blob();
-  return blob;
-};
-
 export const Scan = () => {
+  interface Model {
+    [key: string]: any;
+  }
+
   const mediaRef = useRef<Webcam>(null);
   const interval = useRef<number | null>(null);
   const initiated = useRef(false);
   const URL = "https://teachablemachine.withgoogle.com/models/YdvUHcLXP/";
   const modelURL = URL + "model.json";
   const metadataURL = URL + "metadata.json";
-  let model, webcam, labelContainer, maxPredictions;
+  let model: Model;
+  let maxPredictions: number;
 
   useAlertOnUnload();
 
@@ -61,61 +42,58 @@ export const Scan = () => {
 
   const capture = useCallback(async () => {
     try {
-      console.log("mediaRef", mediaRef);
-
-      // const imageSrc = mediaRef.current?.getScreenshot();
       const imageSrc = mediaRef.current?.getCanvas();
+
       if (imageSrc) {
-        console.log(imageSrc);
-        // const resizedImage = await resizeImage(imageSrc);
-        // const blob = await srcToBlob(resizedImage);
         const prediction = await model.predict(imageSrc);
+        let response = "No custom labels detected";
+        let candyName = "";
+
         for (let i = 0; i < maxPredictions; i++) {
           const className = prediction[i].className;
           const probability = prediction[i].probability.toFixed(2);
 
           if (className !== "No Candy" && probability >= 0.9) {
             switch (className) {
-              case 'Black Forest':
-
+              case "Black Forest":
+                candyName = "black-forest";
                 break;
 
-              case 'Laffy Taffy':
-
+              case "Laffy Taffy":
+                candyName = "laffy-taffy";
                 break;
 
-              case 'Nerds':
-
+              case "Nerds":
+                candyName = "nerds";
                 break;
 
-              case 'Sweetarts':
-
+              case "Sweetarts":
+                candyName = "sweetarts";
                 break;
 
-              case 'Trolli':
-
+              case "Trolli":
+                candyName = "trolli";
                 break;
 
               default:
                 break;
             }
+
+            response = "Prize given";
           }
         }
 
-        // const form = new FormData();
-        // form.append("image", blob, "image.jpeg");
-        // Object.entries(formData).forEach(([key, value]) => {
-        //   form.append(key, value);
-        // });
-        // const { data } = await submit({
-        //   data: form,
-        // });
-        // const responseData = data;
-        // setPrizeResponse(responseData, {
-        //   successCallback: () => {
-        //     interval.current && clearTimeout(interval.current);
-        //   },
-        // });
+        const responseData = {
+          response,
+          success: true,
+          candy_name: candyName,
+        };
+
+        setPrizeResponse(responseData, {
+          successCallback: () => {
+            interval.current && clearTimeout(interval.current);
+          },
+        });
       } else {
         console.error("Image not available");
       }

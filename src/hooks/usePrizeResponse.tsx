@@ -28,6 +28,8 @@ export const usePrizeResponse = () => {
         failCallback?: () => void;
       }
     ) => {
+      console.log('data:', data);
+
       const { successCallback, failCallback } = options ?? {};
       const { response, candy_name } = data;
       const candyKeys = Object.keys(CandyMap);
