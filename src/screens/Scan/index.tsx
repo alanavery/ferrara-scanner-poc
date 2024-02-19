@@ -7,6 +7,8 @@ import { useAlertOnUnload } from "../../hooks/useAlertOnUnload";
 import { useAxios } from "../../axios";
 import { useFormDataContext } from "../../hooks/useFormDataContext";
 import { PrizeResponse, usePrizeResponse } from "../../hooks/usePrizeResponse";
+import * as tf from "@tensorflow/tfjs";
+import * as tmImage from "@teachablemachine/image";
 
 const resizeImage = (src: string, width = 600) => {
   return new Promise<string>((resolve) => {
@@ -35,6 +37,10 @@ export const Scan = () => {
   const mediaRef = useRef<Webcam>(null);
   const interval = useRef<number | null>(null);
   const initiated = useRef(false);
+  const URL = "https://teachablemachine.withgoogle.com/models/YdvUHcLXP/";
+  const modelURL = URL + "model.json";
+  const metadataURL = URL + "metadata.json";
+  let model, webcam, labelContainer, maxPredictions;
 
   useAlertOnUnload();
 
@@ -55,24 +61,61 @@ export const Scan = () => {
 
   const capture = useCallback(async () => {
     try {
-      const imageSrc = mediaRef.current?.getScreenshot();
+      console.log("mediaRef", mediaRef);
+
+      // const imageSrc = mediaRef.current?.getScreenshot();
+      const imageSrc = mediaRef.current?.getCanvas();
       if (imageSrc) {
-        const form = new FormData();
-        const resizedImage = await resizeImage(imageSrc);
-        const blob = await srcToBlob(resizedImage);
-        form.append("image", blob, "image.jpeg");
-        Object.entries(formData).forEach(([key, value]) => {
-          form.append(key, value);
-        });
-        const { data } = await submit({
-          data: form,
-        });
-        const responseData = data;
-        setPrizeResponse(responseData, {
-          successCallback: () => {
-            interval.current && clearTimeout(interval.current);
-          },
-        });
+        console.log(imageSrc);
+        // const resizedImage = await resizeImage(imageSrc);
+        // const blob = await srcToBlob(resizedImage);
+        const prediction = await model.predict(imageSrc);
+        for (let i = 0; i < maxPredictions; i++) {
+          const className = prediction[i].className;
+          const probability = prediction[i].probability.toFixed(2);
+
+          if (className !== "No Candy" && probability >= 0.9) {
+            switch (className) {
+              case 'Black Forest':
+
+                break;
+
+              case 'Laffy Taffy':
+
+                break;
+
+              case 'Nerds':
+
+                break;
+
+              case 'Sweetarts':
+
+                break;
+
+              case 'Trolli':
+
+                break;
+
+              default:
+                break;
+            }
+          }
+        }
+
+        // const form = new FormData();
+        // form.append("image", blob, "image.jpeg");
+        // Object.entries(formData).forEach(([key, value]) => {
+        //   form.append(key, value);
+        // });
+        // const { data } = await submit({
+        //   data: form,
+        // });
+        // const responseData = data;
+        // setPrizeResponse(responseData, {
+        //   successCallback: () => {
+        //     interval.current && clearTimeout(interval.current);
+        //   },
+        // });
       } else {
         console.error("Image not available");
       }
@@ -82,6 +125,8 @@ export const Scan = () => {
   }, [formData, setPrizeResponse, submit]);
 
   const startInterval = useCallback(() => {
+    console.log("Start interval!");
+
     async function intervalFunction() {
       await capture();
       interval.current = setTimeout(intervalFunction, 250);
@@ -91,12 +136,20 @@ export const Scan = () => {
   }, [capture]);
 
   useEffect(() => {
-    if (!initiated.current) {
+    async function init() {
+      model = await tmImage.load(modelURL, metadataURL);
+      maxPredictions = model.getTotalClasses();
+      console.log(maxPredictions);
+
       initiated.current = true;
       setTimeout(startInterval, 1500);
       return () => {
         interval.current && clearTimeout(interval.current);
       };
+    }
+
+    if (!initiated.current) {
+      init();
     }
   }, [startInterval, capture]);
 
