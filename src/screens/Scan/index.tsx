@@ -89,6 +89,7 @@ export const Scan = () => {
           candy_name: candyName,
         };
 
+        // @ts-expect-error
         setPrizeResponse(responseData, {
           successCallback: () => {
             interval.current && clearTimeout(interval.current);
@@ -107,6 +108,7 @@ export const Scan = () => {
 
     async function intervalFunction() {
       await capture();
+      // @ts-expect-error
       interval.current = setTimeout(intervalFunction, 250);
     }
 
